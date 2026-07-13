@@ -1,3 +1,5 @@
+<!-- Last synced with README.md: 2026-05-12 (947bfa4c40) -->
+
 <p align="center">
   <a href="https://librechat.ai">
     <img src="client/public/assets/logo.svg" height="256">
@@ -8,8 +10,8 @@
 </p>
 
 <p align="center">
-  <strong>English</strong> ·
-  <a href="README.zh.md">中文</a>
+  <a href="README.md">English</a> ·
+  <strong>繁體中文</strong>
 </p>
 
 <p align="center">
@@ -47,188 +49,161 @@
   <a href="https://www.librechat.ai/docs/translation">
     <img 
       src="https://img.shields.io/badge/dynamic/json.svg?style=for-the-badge&color=2096F3&label=locize&query=%24.translatedPercentage&url=https://api.locize.app/badgedata/4cb2598b-ed4d-469c-9b04-2ed531a8cb45&suffix=%+translated" 
-      alt="Translation Progress">
+      alt="翻譯進度">
   </a>
 </p>
 
 
-# ✨ Features
+# ✨ 功能
 
-- 🖥️ **UI & Experience** inspired by ChatGPT with enhanced design and features
+- 🖥️ **UI 與體驗**：受 ChatGPT 啟發，並具備更強的設計與功能。
 
-- 🤖 **AI Model Selection**:  
-  - Anthropic (Claude), AWS Bedrock, OpenAI, Azure OpenAI, Google, Vertex AI, OpenAI Responses API (incl. Azure)
-  - [Custom Endpoints](https://www.librechat.ai/docs/quick_start/custom_endpoints): Use any OpenAI-compatible API with LibreChat, no proxy required
-  - Compatible with [Local & Remote AI Providers](https://www.librechat.ai/docs/configuration/librechat_yaml/ai_endpoints):
-    - Ollama, groq, Cohere, Mistral AI, Apple MLX, koboldcpp, together.ai,
-    - OpenRouter, Helicone, Perplexity, ShuttleAI, Deepseek, Qwen, and more
+- 🤖 **AI 模型選擇**：
+  - Anthropic (Claude), AWS Bedrock, OpenAI, Azure OpenAI, Google, Vertex AI, OpenAI Responses API（包含 Azure）
+  - [自訂端點 (Custom Endpoints)](https://www.librechat.ai/docs/quick_start/custom_endpoints)：LibreChat 支援任何相容 OpenAI 規範的 API，無需代理。
+  - 相容[本機與遠端 AI 服務供應商](https://www.librechat.ai/docs/configuration/librechat_yaml/ai_endpoints)：
+    - Ollama, Groq, Cohere, Mistral AI, Apple MLX, koboldcpp, together.ai,
+    - OpenRouter, Helicone, Perplexity, ShuttleAI, DeepSeek, Qwen 等。
 
-- 🔧 **[Code Interpreter API](https://www.librechat.ai/docs/features/code_interpreter)**: 
-  - Secure, Sandboxed Execution in Python, Node.js (JS/TS), Go, C/C++, Java, PHP, Rust, and Fortran
-  - Seamless File Handling: Upload, process, and download files directly
-  - No Privacy Concerns: Fully isolated and secure execution
-  - Open-Source & Self-Hostable: powered by [ClickHouse/code-interpreter](https://github.com/ClickHouse/code-interpreter)
+- 🔧 **[程式碼解譯器 (Code Interpreter) API](https://www.librechat.ai/docs/features/code_interpreter)**：
+  - 安全的沙箱執行環境，支援 Python, Node.js (JS/TS), Go, C/C++, Java, PHP, Rust 與 Fortran。
+  - 無縫檔案處理：直接上傳、處理並下載檔案。
+  - 隱私無虞：完全隔離且安全的執行環境。
 
-- 🔦 **Agents & Tools Integration**:  
-  - **[LibreChat Agents](https://www.librechat.ai/docs/features/agents)**:
-    - No-Code Custom Assistants: Build specialized, AI-driven helpers
-    - Agent Marketplace: Discover and deploy community-built agents
-    - Collaborative Sharing: Share agents with specific users and groups
-    - Flexible & Extensible: Use MCP Servers, tools, file search, code execution, and more
-    - [Skills](https://www.librechat.ai/docs/features/skills): Create reusable `SKILL.md` instruction bundles for manual, automatic, or always-on agent workflows
-    - [Subagents](https://www.librechat.ai/docs/features/subagents): Delegate focused work to isolated child agent runs with their own context windows
-    - Compatible with Custom Endpoints, OpenAI, Azure, Anthropic, AWS Bedrock, Google, Vertex AI, Responses API, and more
-    - [Model Context Protocol (MCP) Support](https://modelcontextprotocol.io/clients#librechat) for Tools
+- 🔦 **智能體與工具整合**：
+  - **[LibreChat 智能體 (Agents)](https://www.librechat.ai/docs/features/agents)**：
+    - 無程式碼自訂助手：無需編程即可建立專業化的 AI 驅動助手。
+    - 智能體市集：探索並部署社群建立的智能體。
+    - 協作共享：與特定使用者與群組共享智能體。
+    - 靈活且可擴充：支援 MCP 伺服器、工具、檔案搜尋、程式碼執行等。
+    - [Skills](https://www.librechat.ai/docs/features/skills)：建立可重用的 `SKILL.md` 指令包，用於手動、自動或始終啟用的智能體工作流程。
+    - [Subagents](https://www.librechat.ai/docs/features/subagents)：將專門任務委派給擁有獨立上下文視窗的隔離子智能體執行。
+    - 相容自訂端點、OpenAI, Azure, Anthropic, AWS Bedrock, Google, Vertex AI, Responses API 等。
+    - [支援模型內容協議 (MCP)](https://modelcontextprotocol.io/clients#librechat) 用於工具呼叫。
 
-- 🔍 **Web Search**:  
-  - Search the internet and retrieve relevant information to enhance your AI context
-  - Combines search providers, content scrapers, and result rerankers for optimal results
-  - **Customizable Jina Reranking**: Configure custom Jina API URLs for reranking services
-  - **[Learn More →](https://www.librechat.ai/docs/features/web_search)**
+- 🔍 **網頁搜尋**：
+  - 搜尋網際網路並檢索相關資訊以增強 AI 上下文。
+  - 結合搜尋供應商、內容爬蟲與結果重排序，確保最佳檢索效果。
+  - **可自訂 Jina 重排序**：設定自訂 Jina API URL 用於重排序服務。
+  - **[了解更多 →](https://www.librechat.ai/docs/features/web_search)**
 
-- 🪄 **Generative UI with Code Artifacts**:  
-  - [Code Artifacts](https://youtu.be/GfTj7O4gmd0?si=WJbdnemZpJzBrJo3) allow creation of React, HTML, and Mermaid diagrams directly in chat
+- 🪄 **支援程式碼 Artifacts 的生成式 UI**：
+  - [程式碼 Artifacts](https://youtu.be/GfTj7O4gmd0?si=WJbdnemZpJzBrJo3) 允許在對話中直接建立 React 元件、HTML 頁面與 Mermaid 圖表。
 
-- 🎨 **Image Generation & Editing**
-  - Text-to-image and image-to-image with [GPT-Image-1](https://www.librechat.ai/docs/features/image_gen#1--openai-image-tools-recommended)
-  - Text-to-image with [DALL-E (3/2)](https://www.librechat.ai/docs/features/image_gen#2--dalle-legacy), [Stable Diffusion](https://www.librechat.ai/docs/features/image_gen#3--stable-diffusion-local), [Flux](https://www.librechat.ai/docs/features/image_gen#4--flux), or any [MCP server](https://www.librechat.ai/docs/features/image_gen#5--model-context-protocol-mcp)
-  - Produce stunning visuals from prompts or refine existing images with a single instruction
+- 🎨 **圖片生成與編輯**：
+  - 使用 [GPT-Image-1](https://www.librechat.ai/docs/features/image_gen#1--openai-image-tools-recommended) 進行文生圖與圖生圖。
+  - 支援 [DALL-E (3/2)](https://www.librechat.ai/docs/features/image_gen#2--dalle-legacy), [Stable Diffusion](https://www.librechat.ai/docs/features/image_gen#3--stable-diffusion-local), [Flux](https://www.librechat.ai/docs/features/image_gen#4--flux) 或任何 [MCP 伺服器](https://www.librechat.ai/docs/features/image_gen#5--model-context-protocol-mcp)。
+  - 根據提示詞生成驚豔的視覺效果，或透過指令精修現有圖片。
 
-- 💾 **Presets & Context Management**:  
-  - Create, Save, & Share Custom Presets  
-  - Switch between AI Endpoints and Presets mid-chat
-  - Edit, Resubmit, and Continue Messages with Conversation branching  
-  - Create and share prompts with specific users and groups
-  - [Fork Messages & Conversations](https://www.librechat.ai/docs/features/fork) for Advanced Context control
+- 💾 **預設與上下文管理**：
+  - 建立、儲存並分享自訂預設。
+  - 在對話中隨時切換 AI 端點與預設。
+  - 編輯、重新提交並透過對話分支繼續訊息。
+  - 建立並與特定使用者與群組共享提示詞。
+  - [訊息與對話分叉 (Fork)](https://www.librechat.ai/docs/features/fork) 以實現進階上下文控制。
 
-- 💬 **Multimodal & File Interactions**:  
-  - Upload and analyze images with Claude 3, GPT-4.5, GPT-4o, o1, Llama-Vision, and Gemini 📸  
-  - Chat with Files using Custom Endpoints, OpenAI, Azure, Anthropic, AWS Bedrock, & Google 🗃️
+- 💬 **多模態與檔案互動**：
+  - 使用 Claude 3, GPT-4.5, GPT-4o, o1, Llama-Vision 與 Gemini 上傳並分析圖片 📸。
+  - 支援透過自訂端點、OpenAI, Azure, Anthropic, AWS Bedrock 與 Google 進行檔案對話 🗃️。
 
-- 🌎 **Multilingual UI**:
-  - English, 中文 (简体), 中文 (繁體), العربية, Deutsch, Español, Français, Italiano
+- 🌎 **多語言 UI**：
+  - English, 中文 (簡體), 中文 (繁體), العربية, Deutsch, Español, Français, Italiano
   - Polski, Português (PT), Português (BR), Русский, 日本語, Svenska, 한국어, Tiếng Việt
   - Türkçe, Nederlands, עברית, Català, Čeština, Dansk, Eesti, فارسی
   - Suomi, Magyar, Հայերեն, Bahasa Indonesia, ქართული, Latviešu, ไทย, ئۇيغۇرچە
 
-- 🧠 **Reasoning UI**:  
-  - Dynamic Reasoning UI for Chain-of-Thought/Reasoning AI models like DeepSeek-R1
+- 🧠 **推理 UI**：
+  - 针對 DeepSeek-R1 等思維鏈／推理 AI 模型的動態推理 UI。
 
-- 🎨 **Customizable Interface**:  
-  - Customizable Dropdown & Interface that adapts to both power users and newcomers
+- 🎨 **可自訂介面**：
+  - 可自訂的下拉選單與介面，同時適合進階使用者與初學者。
 
-- 🌊 **[Resumable Streams](https://www.librechat.ai/docs/features/resumable_streams)**:  
-  - Never lose a response: AI responses automatically reconnect and resume if your connection drops
-  - Multi-Tab & Multi-Device Sync: Open the same chat in multiple tabs or pick up on another device
-  - Production-Ready: Works from single-server setups to horizontally scaled deployments with Redis
+- 🌊 **[可恢復串流 (Resumable Streams)](https://www.librechat.ai/docs/features/resumable_streams)**：
+  - 永不遺失回應：AI 回應在連線中斷後自動重連並繼續。
+  - 多分頁與多裝置同步：在多個分頁開啟同一對話，或在另一台裝置上繼續。
+  - 生產級可靠性：支援從單機部署到基於 Redis 的水平擴展。
 
-- 🗣️ **Speech & Audio**:  
-  - Chat hands-free with Speech-to-Text and Text-to-Speech  
-  - Automatically send and play Audio  
-  - Supports OpenAI, Azure OpenAI, and Elevenlabs
+- 🗣️ **語音與音訊**：
+  - 透過語音轉文字與文字轉語音實現免持對話。
+  - 自動發送並播放音訊。
+  - 支援 OpenAI, Azure OpenAI 與 ElevenLabs。
 
-- 📥 **Import & Export Conversations**:  
-  - Import Conversations from LibreChat, ChatGPT, Chatbot UI  
-  - Export conversations as screenshots, markdown, text, json
+- 📥 **匯入與匯出對話**：
+  - 從 LibreChat, ChatGPT, Chatbot UI 匯入對話。
+  - 將對話匯出為截圖、Markdown、文字、JSON。
 
-- 🔍 **Search & Discovery**:  
-  - Search all messages/conversations
+- 🔍 **搜尋與發現**：
+  - 搜尋所有訊息與對話。
 
-- 👥 **Multi-User & Secure Access**:
-  - Multi-User, Secure Authentication with OAuth2, LDAP, & Email Login Support
-  - Built-in Moderation, and Token spend tools
+- 👥 **多使用者與安全存取**：
+  - 支援 OAuth2, LDAP 與電子郵件登入的多使用者安全驗證。
+  - 內建稽核系統與 Token 消耗管理工具。
 
-- 🎛️ **[Admin Panel](https://www.librechat.ai/docs/features/admin_panel)**:
-  - Browser-based UI to manage users, groups, roles, and configuration overrides
-  - Edit settings and per-role/group permissions live, without redeploying
-  - Bundled with the Docker Compose stacks for one-command setup
+- ⚙️ **設定與部署**：
+  - 支援代理、反向代理、Docker 及多種部署選項。
+  - 使用 [S3 與 CloudFront](https://www.librechat.ai/docs/configuration/cdn/cloudfront) 獲得穩定的媒體連結、邊緣分發、簽名 Cookie 與安全下載。
+  - 可完全本機執行或部署在雲端。
 
-- ⚙️ **Configuration & Deployment**:  
-  - Configure Proxy, Reverse Proxy, Docker, & many Deployment options  
-  - Use [S3 with CloudFront](https://www.librechat.ai/docs/configuration/cdn/cloudfront) for stable media links, edge delivery, signed cookies, and secured downloads
-  - Use completely local or deploy on the cloud
+- 📖 **開源與社群**：
+  - 完全開源且在公眾監督下開發。
+  - 社群驅動的開發、支援與回饋。
 
-- 📖 **Open-Source & Community**:  
-  - Completely Open-Source & Built in Public  
-  - Community-driven development, support, and feedback
+[查看我們的文件了解更多功能詳情](https://docs.librechat.ai/) 📚
 
-[For a thorough review of our features, see our docs here](https://docs.librechat.ai/) 📚
+## 🪶 LibreChat：全方位的 AI 對話平台
 
-## 🪶 All-In-One AI Conversations with LibreChat
+LibreChat 是一個自托管的 AI 對話平台，在一個注重隱私的統一介面中整合了所有主流 AI 服務供應商。
 
-LibreChat is a self-hosted AI chat platform that unifies all major AI providers in a single, privacy-focused interface.
+除了對話功能外，LibreChat 還提供 AI 智能體、模型內容協議 (MCP) 支援、Artifacts、程式碼解譯器、自訂操作、對話搜尋，以及企業級多使用者驗證。
 
-Beyond chat, LibreChat provides AI Agents, Model Context Protocol (MCP) support, Artifacts, Code Interpreter, custom actions, conversation search, and enterprise-ready multi-user authentication.
-
-Open source, actively developed, and built for anyone who values control over their AI infrastructure.
+開源、活躍開發中，專為重視 AI 基礎設施自主可控的使用者而打造。
 
 ---
 
-## 🌐 Resources
+## 🌐 資源
 
-**GitHub Repo:**
+**GitHub 儲存庫：**
   - **RAG API:** [github.com/danny-avila/rag_api](https://github.com/danny-avila/rag_api)
-  - **Website:** [github.com/LibreChat-AI/librechat.ai](https://github.com/LibreChat-AI/librechat.ai)
+  - **網站:** [github.com/LibreChat-AI/librechat.ai](https://github.com/LibreChat-AI/librechat.ai)
 
-**Other:**
-  - **Website:** [librechat.ai](https://librechat.ai)
-  - **Documentation:** [librechat.ai/docs](https://librechat.ai/docs)
-  - **Blog:** [librechat.ai/blog](https://librechat.ai/blog)
+**其他：**
+  - **官方網站:** [librechat.ai](https://librechat.ai)
+  - **說明文件:** [librechat.ai/docs](https://librechat.ai/docs)
+  - **部落格:** [librechat.ai/blog](https://librechat.ai/blog)
 
----
+## 🚀 本地安裝
 
-## 📝 Changelog
+以下步驟可讓你快速在本機執行 LibreChat，完整說明請參考[本地安裝指南](https://www.librechat.ai/zh/docs/quick_start/local_setup)。
 
-Keep up with the latest updates by visiting the releases page and notes:
-- [Releases](https://github.com/danny-avila/LibreChat/releases)
-- [Changelog](https://www.librechat.ai/changelog) 
+**1. 下載專案**
+  - 至 [GitHub 儲存庫](https://github.com/danny-avila/LibreChat)手動下載 ZIP，或使用 Git 指令複製：
+    ```bash
+    git clone https://github.com/danny-avila/LibreChat.git
+    ```
 
-**⚠️ Please consult the [changelog](https://www.librechat.ai/changelog) for breaking changes before updating.**
+**2. 安裝 Docker**
+  - 至 [Docker 官方網站](https://www.docker.com/products/docker-desktop/)下載並安裝 Docker Desktop（建議大多數使用者使用）。
+  - 安裝完成後請確認 Docker Desktop 已啟動執行；若尚未啟動，可能需要重新啟動電腦。
 
----
+**3. 啟動應用程式**
+  - 進入專案目錄。
+  - 複製 `.env.example` 為 `.env`，並填入必要的環境變數：
+    ```bash
+    cp .env.example .env
+    ```
+  - 執行以下指令啟動服務：
+    ```bash
+    docker compose up -d
+    ```
+  - 完成後即可於瀏覽器開啟 `http://localhost:3080` 使用 LibreChat。
 
-## ⭐ Star History
+更多設定資訊，請參考[環境變數設定](https://www.librechat.ai/docs/configuration/dotenv)、[自訂端點設定](https://www.librechat.ai/docs/quick_start/custom_endpoints)，以及[遠端伺服器進階部署](https://www.librechat.ai/docs/local/docker_override)等文件。
 
-<p align="center">
-  <a href="https://star-history.com/#danny-avila/LibreChat&Date">
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=danny-avila/LibreChat&type=Date&theme=dark" onerror="this.src='https://api.star-history.com/svg?repos=danny-avila/LibreChat&type=Date'" />
-  </a>
-</p>
-<p align="center">
-  <a href="https://trendshift.io/repositories/4685" target="_blank" style="padding: 10px;">
-    <img src="https://trendshift.io/api/badge/repositories/4685" alt="danny-avila%2FLibreChat | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/>
-  </a>
-  <a href="https://runacap.com/ross-index/q1-24/" target="_blank" rel="noopener" style="margin-left: 20px;">
-    <img style="width: 260px; height: 56px" src="https://runacap.com/wp-content/uploads/2024/04/ROSS_badge_white_Q1_2024.svg" alt="ROSS Index - Fastest Growing Open-Source Startups in Q1 2024 | Runa Capital" width="260" height="56"/>
-  </a>
-</p>
+## 📚 專案文件來源
 
----
-
-## ✨ Contributions
-
-Contributions, suggestions, bug reports and fixes are welcome!
-
-For new features, components, or extensions, please open an issue and discuss before sending a PR.
-
-If you'd like to help translate LibreChat into your language, we'd love your contribution! Improving our translations not only makes LibreChat more accessible to users around the world but also enhances the overall user experience. Please check out our [Translation Guide](https://www.librechat.ai/docs/translation).
+- 官方文件：[docs.librechat.ai](https://docs.librechat.ai/)
+- 專案首頁：[librechat.ai](https://librechat.ai)
+- GitHub 儲存庫：[github.com/LibreChat-AI/librechat](https://github.com/LibreChat-AI/librechat)
+- RAG API：[github.com/danny-avila/rag_api](https://github.com/danny-avila/rag_api)
 
 ---
-
-## 💖 This project exists in its current state thanks to all the people who contribute
-
-<a href="https://github.com/danny-avila/LibreChat/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=danny-avila/LibreChat" />
-</a>
-
----
-
-## 🎉 Special Thanks
-
-We thank [Locize](https://locize.com) for their translation management tools that support multiple languages in LibreChat.
-
-<p align="center">
-  <a href="https://locize.com" target="_blank" rel="noopener noreferrer">
-    <img src="https://github.com/user-attachments/assets/d6b70894-6064-475e-bb65-92a9e23e0077" alt="Locize Logo" height="50">
-  </a>
-</p>
