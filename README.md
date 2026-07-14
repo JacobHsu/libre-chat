@@ -199,6 +199,24 @@ LibreChat 是一個自托管的 AI 對話平台，在一個注重隱私的統一
 
 更多設定資訊，請參考[環境變數設定](https://www.librechat.ai/docs/configuration/dotenv)、[自訂端點設定](https://www.librechat.ai/docs/quick_start/custom_endpoints)，以及[遠端伺服器進階部署](https://www.librechat.ai/docs/local/docker_override)等文件。
 
+## 🛡️ 管理面板 (Admin Panel)
+
+LibreChat 提供獨立的瀏覽器管理介面，讓管理員可透過 GUI 管理使用者、角色權限、群組與系統授權，取代手動編輯 `librechat.yaml`。
+
+- **啟用方式**：官方 `docker-compose.yml` 已內建 `admin-panel` 服務，執行 `docker compose up -d` 時會自動啟動，無需額外安裝。
+- **必要設定**：於 `.env` 設定 `ADMIN_PANEL_SESSION_SECRET`（至少 32 字元），可透過 `openssl rand -hex 32` 產生。
+- **存取網址**：預設為 `http://localhost:3000`（可透過 `ADMIN_PANEL_PORT` 調整連接埠），與主要聊天介面 `http://localhost:3080` 是分開的獨立網址。
+- **管理功能**：
+  - **使用者**：列出、搜尋與檢視所有帳號。
+  - **角色**：建立自訂角色（內建 `USER` / `ADMIN` 之外）並編輯功能權限矩陣。
+  - **群組**：建立/刪除群組並管理成員。
+  - **系統授權 (System Grants)**：將特定管理權限（如 `manage:users`、`read:usage`）單獨授予使用者、群組或角色，無需給予完整 admin 權限。
+
+**參考文件：**
+- [Admin Panel 官方教學](https://www.librechat.ai/zh/docs/features/admin_panel)
+- [Access Control 存取控制](https://www.librechat.ai/docs/features/access_control)
+- [Interface 物件設定 (librechat.yaml)](https://www.librechat.ai/docs/configuration/librechat_yaml/object_structure/interface)
+
 ## 📚 專案文件來源
 
 - 官方文件：[docs.librechat.ai](https://docs.librechat.ai/)
