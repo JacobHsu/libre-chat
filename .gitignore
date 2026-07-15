@@ -81,6 +81,9 @@ librechat.yml
 my.secrets
 !**/.env.example
 !**/.env.test.example
+!**/.env.railway
+!**/.env.railway_admin
+!**/.env.template
 cache.json
 api/data/
 owner.yml
