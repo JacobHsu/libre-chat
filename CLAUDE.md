@@ -24,6 +24,7 @@ The source code for `@librechat/agents` (major backend dependency, same team) is
 - Database-specific shared logic goes in `/packages/data-schemas`.
 - Frontend/backend shared API logic (endpoints, types, data-service) goes in `/packages/data-provider`.
 - Build data-provider from project root: `npm run build:data-provider`.
+- **Surface conflicting patterns, don't blend them.** If old (`/api`) and new (`/packages/api`) code disagree on how to do something, pick the more recent/better-tested pattern, say why, and flag the other for cleanup — don't mix both in the same change.
 
 ---
 
@@ -86,6 +87,11 @@ The source code for `@librechat/agents` (major backend dependency, same team) is
 - JSDoc only for complex/non-obvious logic or intellisense on public APIs.
 - Single-line JSDoc for brief docs, multi-line for complex cases.
 - Avoid standalone `//` comments unless absolutely necessary.
+
+### Conventions
+
+- Conformance beats personal taste. Match the codebase's existing conventions even if you'd do it differently.
+- If a convention genuinely seems harmful, say so and explain why — don't silently fork off and use your own style instead.
 
 ### Import Order
 
@@ -177,6 +183,7 @@ Multi-line imports count total character length across all lines. Consolidate va
 - **MCP**: use real `@modelcontextprotocol/sdk` exports for servers, transports, and tool definitions. Mirror real scenarios, don't stub SDK internals.
 - Only mock what you cannot control: external HTTP APIs, rate-limited services, non-deterministic system calls.
 - Heavy mocking is a code smell, not a testing strategy.
+- **Tests verify intent, not just behavior.** A test must encode *why* the behavior matters — if it can't fail when the underlying business logic changes, it isn't testing anything.
 
 ---
 
