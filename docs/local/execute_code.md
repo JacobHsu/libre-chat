@@ -146,6 +146,33 @@ docker compose restart api
 **執行程式碼時出現 `CodeAPI request failed: ... returned 401, body: {"error":"API key is required"}`**
 這個錯誤來自 `https://api.librechat.ai`（`LIBRECHAT_CODE_BASEURL` 未設定時的預設值），代表 `.env` 裡的 `LIBRECHAT_CODE_BASEURL` 沒有生效，請求打去了官方代管服務而非本機自架的服務。確認 `.env` 設定正確後執行 `docker compose restart api`。
 
+**`http://localhost:3112/v1/health` 連不上，但幾天前明明測試成功過**
+先確認是不是「半啟動」狀態，而不是整個專案都沒開：
+
+```powershell
+cd D:\github\code-interpreter
+docker compose -f docker-compose.yaml -f docker-compose.mac.yml ps
+```
+
+如果只有 `sandbox-runner` 顯示 `Up`／`healthy`，其餘（`api`、`redis`、`minio`、`egress_gateway`、`file_server`、
+`tool_call_server`）都是 `Exited (255)`，用下面指令比對這些容器的停止時間點：
+
+```bash
+docker inspect api redis minio egress_gateway file_server tool_call_server \
+  --format '{{.Name}}: FinishedAt={{.State.FinishedAt}} ExitCode={{.State.ExitCode}}'
+```
+
+若這幾個容器的 `FinishedAt` 完全落在同一秒、`ExitCode` 都是 255、且沒有對應的錯誤訊息（不是 OOMKilled），
+代表這不是應用程式自己崩潰，而是 **Docker Desktop／WSL2 底層重啟或宿主機睡眠喚醒**，把所有容器一起中斷了；
+`sandbox-runner` 之所以還活著，是因為它設了 restart policy 會自動回來，其餘元件沒有，重啟事件後就停在原地不動。
+直接補跑安裝步驟 3 的啟動指令即可，不需要重新建置：
+
+```powershell
+docker compose -f docker-compose.yaml -f docker-compose.mac.yml up -d
+```
+
+跑完再用本節開頭的 health check 確認回傳 200。
+
 ## 安全性
 
 - 本文件採用的 **NsJail-only 隔離模式**（`docker-compose.mac.yml`）隔離性弱於官方建議的 microVM 模式，僅適合本機開發測試，不要用於執行不受信任來源的程式碼，也不要對外公開。
