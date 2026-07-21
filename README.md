@@ -197,7 +197,34 @@ LibreChat 是一個自托管的 AI 對話平台，在一個注重隱私的統一
     ```
   - 完成後即可於瀏覽器開啟 `http://localhost:3080` 使用 LibreChat。
 
-更多設定資訊，請參考[環境變數設定](https://www.librechat.ai/docs/configuration/dotenv)、[自訂端點設定](https://www.librechat.ai/docs/quick_start/custom_endpoints)，以及[遠端伺服器進階部署](https://www.librechat.ai/docs/local/docker_override)等文件。
+**4. 啟用 Code Interpreter（選用，`docx`／`xlsx`／`pptx` skill 需要）**
+  - Code Interpreter 是獨立部署的沙箱服務（[ClickHouse/code-interpreter](https://github.com/ClickHouse/code-interpreter)），**不包含**在上面第 3 步的 `docker compose up -d` 裡，必須另外 clone 並啟動：
+    ```bash
+    git clone https://github.com/ClickHouse/code-interpreter
+    cd code-interpreter
+    docker compose -f docker-compose.yaml -f docker-compose.mac.yml up --build -d
+    ```
+    （Windows 使用者 clone 完成後，需先修正 `.sh` 檔案的換行符，並額外安裝一次 Python/Node/Bun 執行環境，完整步驟見下方文件。）
+  - 確認服務健康：
+    ```bash
+    curl http://localhost:3112/v1/health
+    ```
+  - 回到 LibreChat 專案的 `.env`，加入：
+    ```
+    LIBRECHAT_CODE_BASEURL=http://host.docker.internal:3112/v1
+    ```
+  - 重啟 LibreChat 讓設定生效：
+    ```bash
+    docker compose restart api
+    ```
+  - 完整安裝步驟（換行符修正、語言環境安裝、驗證、疑難排解）見 [docs/local/execute_code.md](docs/local/execute_code.md)。
+
+**5. 其他本機服務啟用教學**
+  - 🔍 **RAG（檔案搜尋）**：`rag_api` + `vectordb` 已內建在 `docker-compose.yml`，第 3 步的 `docker compose up -d` 會自動一併啟動，不需額外指令，見 [docs/local/rag.md](docs/local/rag.md)。
+  - 📄 **docx／xlsx／pptx Skill**：需先完成上方第 4 步的 Code Interpreter，才能真正產出檔案，安裝步驟見 [docs/local/skills_docx.md](docs/local/skills_docx.md)。
+  - 🔌 **自訂端點 / Endpoint 開關**：見 [docs/local/custom_endpoints.md](docs/local/custom_endpoints.md)、[docs/local/endpoints.md](docs/local/endpoints.md)。
+
+更多設定資訊，請參考[環境變數設定](https://www.librechat.ai/docs/configuration/dotenv)、[自訂端點設定](https://www.librechat.ai/docs/quick_start/custom_endpoints)，以及[遠端伺服器進階部署](https://www.librechat.ai/docs/local/docker_override)等文件。若要部署到遠端伺服器（而非本機），可參考 [docs/remote/digitalocean.md](docs/remote/digitalocean.md)。
 
 ## 🛡️ 管理面板 (Admin Panel)
 
