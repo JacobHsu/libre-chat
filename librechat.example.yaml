@@ -650,6 +650,17 @@ endpoints:
       modelDisplayLabel: 'Portkey'
       iconURL: https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/rjqy7ghvjoiu4cd1xjbf
 
+    # Ollama (local models) — see docs/local/local_models.md
+    - name: 'Ollama'
+      apiKey: 'ollama' # Ollama 不驗證金鑰，填任意非空字串即可
+      baseURL: 'http://host.docker.internal:11434/v1/' # 主機安裝；容器安裝改用 http://ollama:11434/v1/
+      models:
+        default: ['llama3:latest']
+        fetch: true # 向 Ollama 動態抓已下載的模型清單
+      titleConvo: true
+      titleModel: 'current_model'
+      modelDisplayLabel: 'Ollama'
+
   # AWS Bedrock Example
   # Note: Bedrock endpoint is configured via environment variables
   # bedrock:
