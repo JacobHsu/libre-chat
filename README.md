@@ -224,6 +224,29 @@ LibreChat 是一個自托管的 AI 對話平台，在一個注重隱私的統一
   - 📄 **docx／xlsx／pptx Skill**：需先完成上方第 4 步的 Code Interpreter，才能真正產出檔案，安裝步驟見 [docs/local/skills_docx.md](docs/local/skills_docx.md)。
   - 🔌 **自訂端點 / Endpoint 開關**：見 [docs/local/custom_endpoints.md](docs/local/custom_endpoints.md)、[docs/local/endpoints.md](docs/local/endpoints.md)。
 
+**6. 已安裝過？下次快速啟用**
+  - 上面 1～4 步只有第一次安裝需要完整跑過。LibreChat 與 code-interpreter 都已經 clone/建置過之後，日常只需要分別進入兩個專案目錄重新啟動容器，不需要重新 clone 或加 `--build`：
+    ```bash
+    # LibreChat 專案目錄
+    docker compose up -d
+    ```
+    ```bash
+    # code-interpreter 專案目錄（選用，僅在需要 docx／xlsx／pptx skill 時才要啟動）
+    docker compose -f docker-compose.yaml -f docker-compose.mac.yml up -d
+    ```
+  - 確認 Code Interpreter 是否正常：
+    ```bash
+    curl http://localhost:3112/v1/health
+    ```
+  - 若健康檢查連不上，常見原因是 Docker Desktop／WSL2 重開機或宿主機睡眠喚醒，把 code-interpreter 的容器一起中斷了（`sandbox-runner` 因為有 restart policy 會自己活過來，其餘容器不會）。重新執行上面 `docker compose ... up -d` 指令即可復原，不需要重新建置，細節見 [docs/local/execute_code.md](docs/local/execute_code.md) 疑難排解章節。
+
+**7. 修改 `.env` 或 `librechat.yaml` 後如何套用**
+  - 這是 Docker 部署，不是 `npm run backend`。改完 `.env`（例如新增 API Key）或 `librechat.yaml`（例如新增/調整 endpoint）之後，只要重啟 `api` 容器即可套用，不需要重新 build：
+    ```bash
+    docker compose restart api
+    ```
+  - 如果改的是 `docker-compose.yml` 本身（新增服務、改 port 對應等），才需要用 `docker compose up -d` 讓變更生效。
+
 更多設定資訊，請參考[環境變數設定](https://www.librechat.ai/docs/configuration/dotenv)、[自訂端點設定](https://www.librechat.ai/docs/quick_start/custom_endpoints)，以及[遠端伺服器進階部署](https://www.librechat.ai/docs/local/docker_override)等文件。若要部署到遠端伺服器（而非本機），可參考 [docs/remote/digitalocean.md](docs/remote/digitalocean.md)。
 
 ## 🛡️ 管理面板 (Admin Panel)
