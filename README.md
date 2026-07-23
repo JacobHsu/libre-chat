@@ -223,6 +223,7 @@ LibreChat 是一個自托管的 AI 對話平台，在一個注重隱私的統一
   - 🔍 **RAG（檔案搜尋）**：`rag_api` + `vectordb` 已內建在 `docker-compose.yml`，第 3 步的 `docker compose up -d` 會自動一併啟動，不需額外指令，見 [docs/local/rag.md](docs/local/rag.md)。
   - 📄 **docx／xlsx／pptx Skill**：需先完成上方第 4 步的 Code Interpreter，才能真正產出檔案，安裝步驟見 [docs/local/skills_docx.md](docs/local/skills_docx.md)。
   - 🔌 **自訂端點 / Endpoint 開關**：見 [docs/local/custom_endpoints.md](docs/local/custom_endpoints.md)、[docs/local/endpoints.md](docs/local/endpoints.md)。
+  - 👍 **Langfuse 訊息按讚/倒讚追蹤**：選配，用來查看/評估使用者按讚紀錄，需自行填 `.env` 的 Langfuse 金鑰，見 [docs/local/langfuse.md](docs/local/langfuse.md)。
 
 **6. 已安裝過？下次快速啟用**
   - 上面 1～4 步只有第一次安裝需要完整跑過。LibreChat 與 code-interpreter 都已經 clone/建置過之後，日常只需要分別進入兩個專案目錄重新啟動容器，不需要重新 clone 或加 `--build`：
